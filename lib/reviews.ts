@@ -9,20 +9,46 @@ export const yelpBusinessId =
   process.env.NEXT_PUBLIC_YELP_BUSINESS_ID ??
   "abc-swimming-pool-service-san-antonio";
 
-/** From Yelp profile (Jul 2026). Update if your count changes. */
+/** From Yelp profile — update if count changes. */
 export const yelpAggregateRating = {
-  ratingValue: "4.0",
-  reviewCount: "1",
+  ratingValue: "4.6",
+  reviewCount: "5",
 };
 
-/** Real Yelp quotes only — omit placeholders from the live site. */
 export type FeaturedReview = {
   name: string;
   text: string;
   rating: string | number;
 };
 
-export const featuredReviews: FeaturedReview[] = [];
+/** Yelp quotes in display order — 4-star review (Joni C.) centered in the top row. */
+export const featuredReviews: FeaturedReview[] = [
+  {
+    name: "Maria O.",
+    text: "Great service service, always on time Very good price , Service includes vacuuming , they bring their own equipment, chemicals , water tests.",
+    rating: 5,
+  },
+  {
+    name: "Joni C.",
+    text: "Very conscientious, experienced, and reliable staff. Excellent service for great value.",
+    rating: 4,
+  },
+  {
+    name: "Luis B.",
+    text: "Very good service, my pool really is now cleaner and prices are very accessible",
+    rating: 5,
+  },
+  {
+    name: "Jaquie F.",
+    text: "Very reliable, good customer service and highly recommended.",
+    rating: 5,
+  },
+  {
+    name: "Monica O.",
+    text: "Very good service. They change my liner, good job.",
+    rating: 4,
+  },
+];
 
 export function getPublishedReviews(): FeaturedReview[] {
   return featuredReviews.filter(

@@ -203,13 +203,28 @@ export default function Page({ params }: PageProps) {
               <div className={styles.reviewsGrid}>
                 {publishedReviews.map((review, i) => (
                   <blockquote key={i} className={styles.reviewCard}>
-                    <p className={styles.reviewStars} aria-hidden="true">
-                      {reviewStars(review.rating)}
-                    </p>
+                    <div className={styles.reviewHead}>
+                      <span className={styles.reviewAvatar} aria-hidden="true">
+                        <svg viewBox="0 0 40 40" width="40" height="40">
+                          <circle cx="20" cy="20" r="20" fill="#d8d8d8" />
+                          <path
+                            fill="#9a9a9a"
+                            d="M20 19c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2.5c-3.3 0-10 1.7-10 5v2.5h20V27c0-3.3-6.7-5-10-5z"
+                          />
+                        </svg>
+                      </span>
+                      <div className={styles.reviewMeta}>
+                        <footer className={styles.reviewAuthor}>
+                          {review.name}
+                        </footer>
+                        <p className={styles.reviewStars} aria-hidden="true">
+                          {reviewStars(review.rating)}
+                        </p>
+                      </div>
+                    </div>
                     <p className={styles.reviewText}>
                       &ldquo;{review.text}&rdquo;
                     </p>
-                    <footer className={styles.reviewAuthor}>{review.name}</footer>
                   </blockquote>
                 ))}
               </div>
