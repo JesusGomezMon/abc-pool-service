@@ -24,7 +24,7 @@ const seoCopy: Record<
 export function buildPageMetadata(lang: Language): Metadata {
   const { title, description, ogLocale } = seoCopy[lang];
   const pageUrl = `${siteUrl}/${lang}`;
-  const ogImage = `${siteUrl}/img/og-logo.png`;
+  const ogImage = `${siteUrl}/img/og-share.jpeg`;
 
   return {
     title,
@@ -50,7 +50,7 @@ export function buildPageMetadata(lang: Language): Metadata {
           width: 1600,
           height: 930,
           alt: business.name,
-          type: "image/png",
+          type: "image/jpeg",
         },
       ],
     },
@@ -76,8 +76,8 @@ export function buildLocalBusinessJsonLd(lang: Language) {
     "@id": `${siteUrl}/#localbusiness`,
     name: business.name,
     url: `${siteUrl}/${lang}`,
-    image: `${siteUrl}/img/og-logo.png`,
-    logo: `${siteUrl}/img/og-logo.png`,
+    image: `${siteUrl}/img/og-share.jpeg`,
+    logo: `${siteUrl}/img/og-share.jpeg`,
     telephone: business.phone,
     email: business.email,
     description: seoCopy[lang].description,
