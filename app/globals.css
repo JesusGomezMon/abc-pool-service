@@ -1,13 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
-
 :root {
   --bg: #eaf6f6;
   --ink: #093042;
   --accent: #0f9aa6;
   --onaccent: #fff;
   --line: rgba(9, 48, 66, 0.14);
-  --head-font: "Sora", sans-serif;
-  --body-font: "Nunito Sans", sans-serif;
+  --head-font: var(--font-sora), "Sora", sans-serif;
+  --body-font: var(--font-nunito), "Nunito Sans", sans-serif;
   --radius: 26px;
   --foot-bg: #093042;
   --foot-ink: #e3f5f5;

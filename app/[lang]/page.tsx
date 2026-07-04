@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import { getDictionary, Language, supportedLanguages } from "@/lib/i18n";
 import { cosineWavePath } from "@/lib/wave";
 import {
-  featuredReviews,
+  getPublishedReviews,
   reviewStars,
   yelpProfileUrl,
 } from "@/lib/reviews";
+import { business } from "@/lib/site";
 import { YelpWidget } from "@/components/YelpWidget";
+import { YelpRatingBar } from "@/components/YelpRatingBar";
 import styles from "./styles.module.css";
 
 // Low amp so cos(x * 0.5) reads stretched, not tall peaks
@@ -25,18 +27,12 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  const [lang, setLang] = useState<Language>("es");
-
-  useEffect(() => {
-    params.then(({ lang: paramLang }) => {
-      const validLang = (
-        supportedLanguages.includes(paramLang as Language)
-          ? paramLang
-          : "es"
-      ) as Language;
-      setLang(validLang);
-    });
-  }, [params]);
+  const { lang: paramLang } = use(params);
+  const initialLang = (
+    supportedLanguages.includes(paramLang as Language) ? paramLang : "es"
+  ) as Language;
+  const [lang, setLang] = useState<Language>(initialLang);
+  const publishedReviews = getPublishedReviews();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,12 +70,13 @@ export default function Page({ params }: PageProps) {
         <div className={styles.brand}>
           <Image
             src="/img/logo-abc.svg"
-            alt="ABC Swimming Pool Service"
+            alt=""
             className={styles.brandLogo}
-            width={140}
-            height={44}
+            width={180}
+            height={56}
             priority
           />
+          <span className={styles.brandName}>{business.name}</span>
         </div>
         <div className={styles.navactions}>
           <button className={styles.langBtn} onClick={toggleLang}>
@@ -196,19 +193,28 @@ export default function Page({ params }: PageProps) {
         <div className={`${styles.llInnerWide} ${styles.reveal}`}>
           <p className={styles.llEyebrow}>{t.reviewsEyebrow}</p>
           <h2 className={styles.llH2}>{t.reviewsTitle}</h2>
+          <YelpRatingBar label={t.reviewsYelpRatingLabel} />
           <YelpWidget />
-          <h3 className={styles.reviewsFeaturedTitle}>{t.reviewsFeaturedTitle}</h3>
-          <div className={styles.reviewsGrid}>
-            {featuredReviews.map((review, i) => (
-              <blockquote key={i} className={styles.reviewCard}>
-                <p className={styles.reviewStars} aria-hidden="true">
-                  {reviewStars(review.rating)}
-                </p>
-                <p className={styles.reviewText}>&ldquo;{review.text}&rdquo;</p>
-                <footer className={styles.reviewAuthor}>{review.name}</footer>
-              </blockquote>
-            ))}
-          </div>
+          {publishedReviews.length > 0 && (
+            <>
+              <h3 className={styles.reviewsFeaturedTitle}>
+                {t.reviewsFeaturedTitle}
+              </h3>
+              <div className={styles.reviewsGrid}>
+                {publishedReviews.map((review, i) => (
+                  <blockquote key={i} className={styles.reviewCard}>
+                    <p className={styles.reviewStars} aria-hidden="true">
+                      {reviewStars(review.rating)}
+                    </p>
+                    <p className={styles.reviewText}>
+                      &ldquo;{review.text}&rdquo;
+                    </p>
+                    <footer className={styles.reviewAuthor}>{review.name}</footer>
+                  </blockquote>
+                ))}
+              </div>
+            </>
+          )}
           <div className={styles.reviewsCtaRow}>
             <a
               className={styles.btnYelp}
@@ -456,8 +462,8 @@ export default function Page({ params }: PageProps) {
                   src="/img/logo-completo.svg"
                   alt="ABC Swimming Pool Service"
                   className={styles.footLogo}
-                  width={220}
-                  height={56}
+                  width={320}
+                  height={80}
                   loading="lazy"
                 />
                 <p className={styles.footTagline}>{t.footTagline}</p>

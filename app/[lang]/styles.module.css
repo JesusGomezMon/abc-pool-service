@@ -30,12 +30,21 @@
 }
 
 .brandLogo {
-  height: 44px;
+  height: 56px;
   width: auto;
-  max-width: min(180px, 52vw);
+  max-width: min(220px, 42vw);
   object-fit: contain;
   flex: none;
   display: block;
+}
+
+.brandName {
+  font-family: var(--head-font);
+  font-size: clamp(13px, 2.2vw, 17px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  min-width: 0;
 }
 
 .navactions {
@@ -636,27 +645,36 @@
 .yelpEmbed {
   display: flex;
   justify-content: center;
-  margin: 28px auto 36px;
+  margin: 20px auto 28px;
   min-height: 48px;
 }
 
-.yelpPlaceholder {
-  margin: 0;
-  padding: 16px 20px;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  font-size: 13px;
-  line-height: 1.5;
-  text-align: center;
-  opacity: 0.75;
-  max-width: 520px;
+.yelpRatingBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
 }
 
-.yelpPlaceholder code {
-  font-size: 12px;
-  background: rgba(9, 48, 66, 0.06);
-  padding: 2px 6px;
-  border-radius: 4px;
+.yelpRatingBar:hover {
+  opacity: 0.85;
+}
+
+.yelpRatingStars {
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: #d32323;
+  line-height: 1;
+}
+
+.yelpRatingMeta {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.8;
 }
 
 .reviewsFeaturedTitle {
@@ -873,9 +891,9 @@
 }
 
 .footLogo {
-  height: 52px;
+  height: 76px;
   width: auto;
-  max-width: 220px;
+  max-width: min(320px, 88vw);
   object-fit: contain;
   display: block;
 }
@@ -1002,8 +1020,13 @@
   }
 }
 
-/* Scroll reveal */
+/* Scroll reveal — visible on first paint; animate only when JS runs */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal:not(.in) {
   opacity: 0;
   transform: translateY(22px);
   transition:
@@ -1011,7 +1034,7 @@
     transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-.reveal.in {
+html.js .reveal.in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1174,13 +1197,18 @@
   }
 
   .brandLogo {
-    height: 36px;
-    max-width: 46vw;
+    height: 46px;
+    max-width: 38vw;
+  }
+
+  .brandName {
+    font-size: 12px;
+    max-width: 42vw;
   }
 
   .footLogo {
-    height: 44px;
-    max-width: 200px;
+    height: 64px;
+    max-width: 280px;
   }
 
   .heroB {

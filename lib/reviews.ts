@@ -4,40 +4,34 @@ import { isPlaceholder } from "@/lib/site";
 export const yelpProfileUrl =
   "https://www.yelp.com/biz/abc-swimming-pool-service-san-antonio";
 
-/**
- * From Yelp for Business → Get Reviews Widget.
- * Replace [YELP_BUSINESS_ID] with your ID (or set NEXT_PUBLIC_YELP_BUSINESS_ID in .env).
- */
+/** Yelp for Business → Get Reviews Widget (biz slug works for most profiles). */
 export const yelpBusinessId =
-  process.env.NEXT_PUBLIC_YELP_BUSINESS_ID ?? "[YELP_BUSINESS_ID]";
+  process.env.NEXT_PUBLIC_YELP_BUSINESS_ID ??
+  "abc-swimming-pool-service-san-antonio";
 
-/**
- * Update from your Yelp profile before publishing (Rich Results needs numbers).
- * Replace [RATING_VALUE] (e.g. 4.8) and [REVIEW_COUNT] (e.g. 42).
- */
+/** From Yelp profile (Jul 2026). Update if your count changes. */
 export const yelpAggregateRating = {
-  ratingValue: "[RATING_VALUE]",
-  reviewCount: "[REVIEW_COUNT]",
+  ratingValue: "4.0",
+  reviewCount: "1",
 };
 
-/** Paste real Yelp reviews here — do not auto-generate content. */
-export const featuredReviews = [
-  {
-    name: "[CLIENT_NAME_1]",
-    text: "[REVIEW_TEXT_1 — paste exact quote from Yelp]",
-    rating: "[RATING_1]",
-  },
-  {
-    name: "[CLIENT_NAME_2]",
-    text: "[REVIEW_TEXT_2 — paste exact quote from Yelp]",
-    rating: "[RATING_2]",
-  },
-  {
-    name: "[CLIENT_NAME_3]",
-    text: "[REVIEW_TEXT_3 — paste exact quote from Yelp]",
-    rating: "[RATING_3]",
-  },
-] as const;
+/** Real Yelp quotes only — omit placeholders from the live site. */
+export type FeaturedReview = {
+  name: string;
+  text: string;
+  rating: string | number;
+};
+
+export const featuredReviews: FeaturedReview[] = [];
+
+export function getPublishedReviews(): FeaturedReview[] {
+  return featuredReviews.filter(
+    (r) =>
+      !isPlaceholder(r.name) &&
+      !isPlaceholder(r.text) &&
+      !isPlaceholder(String(r.rating))
+  );
+}
 
 export function resolveAggregateRating() {
   const { ratingValue, reviewCount } = yelpAggregateRating;

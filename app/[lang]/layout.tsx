@@ -6,9 +6,11 @@ import {
 } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/seo";
 import { gscVerification, isPlaceholder } from "@/lib/site";
+import { nunitoSans, sora } from "@/lib/fonts";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { JsonLd } from "@/components/JsonLd";
 import "@/app/globals.css";
+import "./styles.module.css";
 
 export function generateStaticParams() {
   return supportedLanguages.map((lang) => ({ lang }));
@@ -60,8 +62,22 @@ export default async function LangLayout({
   const validLang = htmlLang as Language;
 
   return (
-    <html lang={htmlLang} suppressHydrationWarning>
-      <body style={{ margin: 0, padding: 0, boxSizing: "border-box" }}>
+    <html
+      lang={htmlLang}
+      className={`${sora.variable} ${nunitoSans.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
+        />
+      </head>
+      <body
+        className={nunitoSans.className}
+        style={{ margin: 0, padding: 0, boxSizing: "border-box" }}
+      >
         <JsonLd lang={validLang} />
         {children}
         <GoogleAnalytics />

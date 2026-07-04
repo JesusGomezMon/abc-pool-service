@@ -69,6 +69,7 @@ export interface TranslationStructure {
   reviewsEyebrow: string;
   reviewsTitle: string;
   reviewsFeaturedTitle: string;
+  reviewsYelpRatingLabel: string;
   reviewsYelpCta: string;
 }
 
@@ -226,6 +227,7 @@ const translations: Record<Language, TranslationStructure> = {
     reviewsEyebrow: "Reseñas",
     reviewsTitle: "Lo que dicen nuestros clientes",
     reviewsFeaturedTitle: "Testimonios destacados",
+    reviewsYelpRatingLabel: "en Yelp",
     reviewsYelpCta: "Ver todas nuestras reseñas en Yelp",
   },
   en: {
@@ -381,6 +383,7 @@ const translations: Record<Language, TranslationStructure> = {
     reviewsEyebrow: "Reviews",
     reviewsTitle: "What our clients say",
     reviewsFeaturedTitle: "Featured testimonials",
+    reviewsYelpRatingLabel: "on Yelp",
     reviewsYelpCta: "See all our reviews on Yelp",
   },
 };
