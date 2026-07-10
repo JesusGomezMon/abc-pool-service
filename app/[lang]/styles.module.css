@@ -125,6 +125,109 @@
   justify-content: center;
 }
 
+/* Mobile hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 44px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  flex: none;
+}
+
+.hamburgerBar {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.hamburgerOpen .hamburgerBar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerBar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen .hamburgerBar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.menuBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: calc(100% - 6px);
+  right: clamp(16px, 4vw, 48px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 214px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(9, 48, 66, 0.18);
+  animation: menuIn 0.18s ease;
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileLink {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-family: var(--body-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mobileLink:hover,
+.mobileLink:focus-visible {
+  background: rgba(15, 154, 166, 0.1);
+  outline: none;
+}
+
+.mobileMenu .btnWa {
+  margin-top: 4px;
+  width: 100%;
+}
+
 /* Hero: image + single dark scrim */
 .heroB {
   position: relative;
@@ -398,6 +501,103 @@
 
 .baCard:hover .baImg {
   transform: scale(1.03);
+}
+
+/* Proceso paso a paso */
+.procesoBlock {
+  max-width: 980px;
+  margin: 44px auto 0;
+}
+
+.procesoTitle {
+  font-family: var(--head-font);
+  font-size: clamp(20px, 3.2vw, 26px);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.procesoLead {
+  text-align: center;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.6;
+  opacity: 0.8;
+  margin: 0 auto 26px;
+  max-width: 620px;
+}
+
+.procesoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.procesoCard {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(9, 48, 66, 0.08);
+}
+
+.procesoImgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #d4ecec;
+}
+
+.procesoStepNum {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--onaccent);
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(9, 48, 66, 0.28);
+}
+
+.procesoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.procesoCap {
+  padding: 14px 16px 16px;
+}
+
+.procesoCapLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.procesoCapText {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+@media (min-width: 720px) {
+  .procesoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* List */
@@ -758,6 +958,119 @@
   display: flex;
   justify-content: center;
   margin-top: 28px;
+}
+
+/* About Fernando */
+.aboutTitle {
+  font-family: var(--head-font);
+  font-size: clamp(22px, 3.6vw, 30px);
+  font-weight: 700;
+  margin: 0 auto 28px;
+  text-align: center;
+  line-height: 1.25;
+  max-width: 720px;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(24px, 4vw, 40px);
+  align-items: start;
+}
+
+.aboutPhotoWrap {
+  margin: 0;
+}
+
+.aboutPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+  aspect-ratio: 5 / 6;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(9, 48, 66, 0.1);
+}
+
+.aboutPhotoPending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  aspect-ratio: 5 / 6;
+  border-radius: var(--radius);
+  border: 2px dashed rgba(15, 154, 166, 0.4);
+  background: linear-gradient(160deg, #eaf6f6 0%, #d4ecec 100%);
+  color: var(--accent);
+  text-align: center;
+  padding: 24px;
+}
+
+.aboutPhotoPending span {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  max-width: 200px;
+  line-height: 1.4;
+}
+
+.aboutBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.aboutParagraph {
+  margin: 0;
+  font-size: clamp(15px, 2.1vw, 17px);
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+.aboutQuote {
+  margin: 4px 0 0;
+  padding: 16px 18px;
+  border-left: 4px solid var(--accent);
+  background: rgba(15, 154, 166, 0.08);
+  border-radius: 0 14px 14px 0;
+}
+
+.aboutQuote p {
+  margin: 0;
+  font-family: var(--head-font);
+  font-size: clamp(15px, 2.2vw, 17px);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.aboutBadges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 4px;
+}
+
+.aboutBadge {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.aboutCtaRow {
+  margin-top: 8px;
+}
+
+.aboutCtaRow .btnWa {
+  width: fit-content;
 }
 
 .btnYelp {
@@ -1199,8 +1512,18 @@ html.js .reveal.in {
   .llRiskGrid,
   .llAuthGrid,
   .llUrgGrid,
-  .llBaGrid {
+  .llBaGrid,
+  .aboutGrid {
     grid-template-columns: 1fr;
+  }
+
+  .aboutPhoto {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .aboutCtaRow .btnWa {
+    width: 100%;
   }
 
   .footGrid {
@@ -1219,8 +1542,12 @@ html.js .reveal.in {
 }
 
 @media (max-width: 560px) {
-  .navactions .btnWa {
+  .navactions {
     display: none;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .brandLogo {

@@ -19,6 +19,11 @@ export interface TranslationStructure {
   evidenceFoot: string;
   baBefore: string;
   baAfter: string;
+  proceso: {
+    title: string;
+    lead: string;
+    steps: Array<{ label: string; caption: string }>;
+  };
   villainTitle: string;
   villainLead: string;
   villainItems: string[];
@@ -34,6 +39,9 @@ export interface TranslationStructure {
   offerTitle: string;
   offerLead: string;
   packages: Array<{ name: string; tag: string; items: string[] }>;
+  offerCta: string;
+  offerBrandsTitle: string;
+  offerLicensed: string;
   priceTitle: string;
   priceBody: string;
   stepsTitle: string;
@@ -71,6 +79,16 @@ export interface TranslationStructure {
   reviewsFeaturedTitle: string;
   reviewsYelpRatingLabel: string;
   reviewsYelpCta: string;
+  aboutFernando: {
+    eyebrow: string;
+    title: string;
+    paragraphs: string[];
+    quote: string;
+    cta: string;
+    badgesLabel: string;
+    badgeLicensed: string;
+    photoPending: string;
+  };
 }
 
 const translations: Record<Language, TranslationStructure> = {
@@ -97,6 +115,15 @@ const translations: Record<Language, TranslationStructure> = {
     evidenceFoot: "No es magia. Es la diferencia entre alguien que entiende qué está mal y alguien que solo \"tira químicos y espera\".",
     baBefore: "Antes",
     baAfter: "Después",
+    proceso: {
+      title: "Así se ve el proceso, paso a paso",
+      lead: "Una piscina real que recuperamos en San Antonio: del agua verde al acabado limpio.",
+      steps: [
+        { label: "Antes", caption: "Agua verde, estancada y llena de residuos." },
+        { label: "Durante", caption: "Vaciado, retiro de lodo y lavado de la superficie." },
+        { label: "Después", caption: "Cáscara limpia y lista para volver a llenar." },
+      ],
+    },
     villainTitle: "El problema no es que \"no sepas mantener una piscina\"",
     villainLead: "El problema real: nadie te enseñó.",
     villainItems: [
@@ -151,7 +178,46 @@ const translations: Record<Language, TranslationStructure> = {
           "Preparación de superficie y pintura",
         ],
       },
+      {
+        name: "Instalación y reparación de equipo",
+        tag: "",
+        items: [
+          "Instalación de bombas, filtros y equipos",
+          "Diagnóstico y reparación de fallas",
+          "Piezas y mano de obra calificada",
+        ],
+      },
+      {
+        name: "Renovaciones de piscina",
+        tag: "",
+        items: [
+          "Revestimiento y acabados",
+          "Actualización de superficie y decking",
+          "Proyectos a medida",
+        ],
+      },
+      {
+        name: "Detección y reparación de fugas",
+        tag: "",
+        items: [
+          "Localización de fugas sin destruir",
+          "Reparación de líneas y equipo",
+          "Pruebas de presión",
+        ],
+      },
+      {
+        name: "Lavado ácido y tratamiento de manchas",
+        tag: "",
+        items: [
+          "Limpieza profunda de superficie",
+          "Remoción de manchas y residuos",
+          "Preparación para temporada",
+        ],
+      },
     ],
+    offerCta: "Consultar por WhatsApp",
+    offerBrandsTitle: "Trabajamos con equipos de confianza",
+    offerLicensed: "Con licencia y asegurado",
     priceTitle: "¿Cuánto cuesta?",
     priceBody: "No hay un número mágico: cada piscina es diferente. Por eso ofrecemos un presupuesto gratis: hablamos, vemos tu piscina, te decimos exactamente qué necesita y qué cuesta. Sin sorpresas. Sin presión.",
     stepsTitle: "¿Qué pasa después de tu primera llamada?",
@@ -229,6 +295,20 @@ const translations: Record<Language, TranslationStructure> = {
     reviewsFeaturedTitle: "Testimonios destacados",
     reviewsYelpRatingLabel: "en Yelp",
     reviewsYelpCta: "Ver todas nuestras reseñas en Yelp",
+    aboutFernando: {
+      eyebrow: "Conoce quién está detrás",
+      title: "Detrás de ABC Swimming Pool Service está Fernando",
+      paragraphs: [
+        "Fernando lleva años cuidando piscinas en San Antonio con sus propias manos. No es una franquicia ni un call center: es quien llega a tu casa, revisa tu equipo y se queda hasta que el agua se ve bien.",
+        "Conoce químicos, bombas, filtros y válvulas de verdad. Le importa hacer las cosas bien la primera vez y buscar la solución que a tu piscina le conviene, no la que conviene a una plantilla corporativa.",
+        "Cada piscina es distinta y Fernando lo sabe: ajusta el plan de mantenimiento a tu situación, tu presupuesto y cómo usas el agua. Eso marca la diferencia entre un servicio genérico y uno que de verdad funciona.",
+      ],
+      quote: "Nuestra mejor publicidad: el boca a boca de clientes satisfechos",
+      cta: "Contáctanos",
+      badgesLabel: "Certificaciones y marcas con las que trabajamos",
+      badgeLicensed: "Licensed & Insured",
+      photoPending: "Foto de Fernando próximamente",
+    },
   },
   en: {
     hero: {
@@ -253,6 +333,15 @@ const translations: Record<Language, TranslationStructure> = {
     evidenceFoot: "It's not magic. It's the difference between someone who understands what's wrong and someone who just \"throws in chemicals and hopes.\"",
     baBefore: "Before",
     baAfter: "After",
+    proceso: {
+      title: "Here's the process, step by step",
+      lead: "A real San Antonio pool we brought back: from green water to a clean finish.",
+      steps: [
+        { label: "Before", caption: "Green, stagnant water full of debris." },
+        { label: "During", caption: "Drained, sludge removed and the surface washed down." },
+        { label: "After", caption: "Clean shell, ready to be refilled." },
+      ],
+    },
     villainTitle: "The problem isn't that \"you don't know how to maintain a pool\"",
     villainLead: "The real problem: no one ever taught you.",
     villainItems: [
@@ -307,7 +396,46 @@ const translations: Record<Language, TranslationStructure> = {
           "Surface prep & painting",
         ],
       },
+      {
+        name: "Pool Equipment Installation & Repair",
+        tag: "",
+        items: [
+          "Pump, filter and equipment installation",
+          "Diagnostics and repair",
+          "Qualified parts and labor",
+        ],
+      },
+      {
+        name: "Pool Renovations",
+        tag: "",
+        items: [
+          "Resurfacing and finishes",
+          "Deck and surface upgrades",
+          "Custom renovation projects",
+        ],
+      },
+      {
+        name: "Pool Leak Detection & Repair",
+        tag: "",
+        items: [
+          "Non-destructive leak location",
+          "Line and equipment repair",
+          "Pressure testing",
+        ],
+      },
+      {
+        name: "Acid Washing & Stain Treatment",
+        tag: "",
+        items: [
+          "Deep surface cleaning",
+          "Stain and residue removal",
+          "Season prep and restoration",
+        ],
+      },
     ],
+    offerCta: "Ask on WhatsApp",
+    offerBrandsTitle: "We work with trusted equipment brands",
+    offerLicensed: "Licensed & insured",
     priceTitle: "How much does it cost?",
     priceBody: "There's no magic number: every pool is different. That's why we offer a free estimate: we talk, we see your pool, we tell you exactly what it needs and what it costs. No surprises. No pressure.",
     stepsTitle: "What happens after your first call?",
@@ -385,6 +513,20 @@ const translations: Record<Language, TranslationStructure> = {
     reviewsFeaturedTitle: "Featured testimonials",
     reviewsYelpRatingLabel: "on Yelp",
     reviewsYelpCta: "See all our reviews on Yelp",
+    aboutFernando: {
+      eyebrow: "Meet the person behind the work",
+      title: "Behind ABC Swimming Pool Service is Fernando",
+      paragraphs: [
+        "Fernando has spent years caring for pools in San Antonio with his own hands. This isn't a franchise or a call center: he's the one who shows up at your home, checks your equipment, and stays until the water looks right.",
+        "He knows chemicals, pumps, filters, and valves for real. He cares about doing the job right the first time and finding the solution that fits your pool, not a corporate one-size-fits-all template.",
+        "Every pool is different, and Fernando knows it: he tailors the maintenance plan to your situation, your budget, and how you use the water. That's what separates a generic service from one that actually works.",
+      ],
+      quote: "Our best advertising: word of mouth from satisfied clients",
+      cta: "Contact us",
+      badgesLabel: "Certifications and brands we work with",
+      badgeLicensed: "Licensed & Insured",
+      photoPending: "Photo of Fernando coming soon",
+    },
   },
 };
 

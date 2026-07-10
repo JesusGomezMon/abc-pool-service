@@ -1,0 +1,247 @@
+.section {
+  padding: clamp(48px, 8vw, 80px) clamp(16px, 5vw, 48px);
+  background: var(--card-bg);
+  position: relative;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.eyebrow {
+  font-size: clamp(15px, 2.4vw, 18px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--head-font);
+  font-size: clamp(24px, 4vw, 31px);
+  font-weight: 700;
+  margin: 0 0 20px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.lead {
+  font-size: clamp(15px, 2.2vw, 17.5px);
+  line-height: 1.65;
+  opacity: 0.82;
+  text-align: center;
+  margin: 0 auto 28px;
+  max-width: 760px;
+}
+
+.brands {
+  margin: clamp(32px, 5vw, 48px) auto 0;
+  text-align: center;
+}
+
+.brandsTitle {
+  font-size: clamp(13px, 2vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--foot-bg, #093042);
+  opacity: 0.7;
+  margin: 0 0 18px;
+}
+
+.brandsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.brandCard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(9, 48, 66, 0.1);
+  box-shadow: 0 4px 14px rgba(9, 48, 66, 0.07);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+a.brandCard:hover,
+a.brandCard:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(9, 48, 66, 0.14);
+  border-color: rgba(15, 154, 166, 0.4);
+  outline: none;
+}
+
+.brandCardStatic {
+  border-color: rgba(15, 154, 166, 0.35);
+  background: #f4fbfb;
+}
+
+.brandLogo {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: min(200px, 44vw);
+  object-fit: contain;
+}
+
+/* Wide wordmark logos (e.g. Hayward) sit shorter so their visual weight
+   matches the taller marks next to them. */
+.brandLogoWide {
+  height: 24px;
+  max-width: min(190px, 46vw);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 2.5vw, 24px);
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(9, 48, 66, 0.08);
+  box-shadow: 0 8px 24px rgba(9, 48, 66, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(9, 48, 66, 0.16);
+  border-color: rgba(15, 154, 166, 0.4);
+  outline: none;
+}
+
+.cardFeatured {
+  border-color: rgba(15, 154, 166, 0.55);
+  box-shadow: 0 12px 32px rgba(15, 154, 166, 0.2);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #d4ecec;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image,
+.card:focus-visible .image {
+  transform: scale(1.05);
+}
+
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: var(--accent);
+  color: var(--onaccent);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  box-shadow: 0 4px 12px rgba(9, 48, 66, 0.25);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(18px, 3vw, 22px);
+}
+
+.cardTitle {
+  margin: 0 0 14px;
+  font-family: var(--head-font);
+  font-size: clamp(17px, 2.4vw, 19px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--foot-bg, #093042);
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.listItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+.check {
+  color: var(--accent);
+  font-weight: 800;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.cardCta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  padding-top: 4px;
+}
+
+.cardCtaArrow {
+  transition: transform 0.25s ease;
+}
+
+.card:hover .cardCtaArrow,
+.card:focus-visible .cardCtaArrow {
+  transform: translateX(4px);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

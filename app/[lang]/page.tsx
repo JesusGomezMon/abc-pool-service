@@ -12,6 +12,8 @@ import {
 import { business } from "@/lib/site";
 import { YelpWidget } from "@/components/YelpWidget";
 import { YelpRatingBar } from "@/components/YelpRatingBar";
+import { AboutFernando } from "@/components/AboutFernando";
+import { Services } from "@/components/Services";
 import styles from "./styles.module.css";
 
 // Low amp so cos(x * 0.5) reads stretched, not tall peaks
@@ -32,6 +34,7 @@ export default function Page({ params }: PageProps) {
     supportedLanguages.includes(paramLang as Language) ? paramLang : "es"
   ) as Language;
   const [lang, setLang] = useState<Language>(initialLang);
+  const [menuOpen, setMenuOpen] = useState(false);
   const publishedReviews = getPublishedReviews();
 
   useEffect(() => {
@@ -91,6 +94,64 @@ export default function Page({ params }: PageProps) {
             {t.hero.cta}
           </a>
         </div>
+        <button
+          type="button"
+          className={`${styles.hamburger}${menuOpen ? ` ${styles.hamburgerOpen}` : ""}`}
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <span className={styles.hamburgerBar} />
+          <span className={styles.hamburgerBar} />
+          <span className={styles.hamburgerBar} />
+        </button>
+        {menuOpen && (
+          <>
+            <button
+              type="button"
+              className={styles.menuBackdrop}
+              aria-label="Cerrar menú"
+              tabIndex={-1}
+              onClick={() => setMenuOpen(false)}
+            />
+            <nav id="mobile-menu" className={styles.mobileMenu}>
+              <a
+                className={styles.mobileLink}
+                href="#services-title"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t.offerEyebrow}
+              </a>
+              <a
+                className={styles.mobileLink}
+                href="tel:+12103921245"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t.hero.call}
+              </a>
+              <button
+                type="button"
+                className={styles.mobileLink}
+                onClick={() => {
+                  toggleLang();
+                  setMenuOpen(false);
+                }}
+              >
+                {lang === "es" ? "English" : "Español"}
+              </button>
+              <a
+                className={styles.btnWa}
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t.hero.cta}
+              </a>
+            </nav>
+          </>
+        )}
       </div>
 
       {/* Hero */}
@@ -132,6 +193,12 @@ export default function Page({ params }: PageProps) {
         </svg>
       </div>
 
+      <AboutFernando
+        copy={t.aboutFernando}
+        contactHref="tel:+12103921245"
+        revealClass={styles.reveal}
+      />
+
       {/* Filter / Self-check */}
       <div className={styles.llBand}>
         <div className={`${styles.llInner} ${styles.reveal}`}>
@@ -163,7 +230,7 @@ export default function Page({ params }: PageProps) {
                 <p className={styles.llBaLabel}>{t.baBefore}</p>
                 <Image
                   className={styles.baImg}
-                  src="/img/antes.webp"
+                  src="/img/resultado-antes.jpeg"
                   alt={t.baBefore}
                   width={640}
                   height={480}
@@ -175,7 +242,7 @@ export default function Page({ params }: PageProps) {
                 <p className={styles.llBaLabel}>{t.baAfter}</p>
                 <Image
                   className={styles.baImg}
-                  src="/img/despues.webp"
+                  src="/img/resultado-despues.jpeg"
                   alt={t.baAfter}
                   width={640}
                   height={480}
@@ -183,6 +250,34 @@ export default function Page({ params }: PageProps) {
                   loading="lazy"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Proceso paso a paso */}
+          <div className={styles.procesoBlock}>
+            <h3 className={styles.procesoTitle}>{t.proceso.title}</h3>
+            <p className={styles.procesoLead}>{t.proceso.lead}</p>
+            <div className={styles.procesoGrid}>
+              {t.proceso.steps.map((step, i) => (
+                <figure key={i} className={styles.procesoCard}>
+                  <div className={styles.procesoImgWrap}>
+                    <span className={styles.procesoStepNum}>{i + 1}</span>
+                    <Image
+                      className={styles.procesoImg}
+                      src={`/img/proceso-${i + 1}-${["antes", "durante", "despues"][i]}.jpeg`}
+                      alt={step.label}
+                      width={640}
+                      height={480}
+                      sizes="(max-width: 860px) 100vw, 33vw"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className={styles.procesoCap}>
+                    <span className={styles.procesoCapLabel}>{step.label}</span>
+                    <span className={styles.procesoCapText}>{step.caption}</span>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </div>
@@ -298,30 +393,18 @@ export default function Page({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Offer / Packages */}
-      <div className={`${styles.llBand} ${styles.llBandTint}`}>
-        <div className={`${styles.llInnerWide} ${styles.reveal}`}>
-          <p className={styles.llEyebrow}>{t.offerEyebrow}</p>
-          <h2 className={styles.llH2}>{t.offerTitle}</h2>
-          <p className={styles.llLead}>{t.offerLead}</p>
-          <div className={styles.llPkgGrid}>
-            {t.packages.map((pkg, i) => (
-              <div
-                key={i}
-                className={`${styles.llPkgCard}${pkg.tag ? ` ${styles.llPkgFeatured}` : ""}`}
-              >
-                {pkg.tag && <span className={styles.llPkgTag}>{pkg.tag}</span>}
-                <h3 className={styles.llPkgName}>{pkg.name}</h3>
-                <ul className={styles.llPkgItems}>
-                  {pkg.items.map((item, j) => (
-                    <li key={j}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Offer / Services */}
+      <Services
+        eyebrow={t.offerEyebrow}
+        title={t.offerTitle}
+        lead={t.offerLead}
+        packages={t.packages}
+        ctaLabel={t.offerCta}
+        contactHref={waHref}
+        brandsTitle={t.offerBrandsTitle}
+        licensedLabel={t.offerLicensed}
+        revealClass={styles.reveal}
+      />
 
       {/* Price & Steps */}
       <div className={`${styles.llBand} ${styles.llBandTint}`}>
