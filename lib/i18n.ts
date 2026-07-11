@@ -87,7 +87,6 @@ export interface TranslationStructure {
     cta: string;
     badgesLabel: string;
     badgeLicensed: string;
-    photoPending: string;
   };
 }
 
@@ -307,7 +306,6 @@ const translations: Record<Language, TranslationStructure> = {
       cta: "Contáctanos",
       badgesLabel: "Certificaciones y marcas con las que trabajamos",
       badgeLicensed: "Licensed & Insured",
-      photoPending: "Foto de Fernando próximamente",
     },
   },
   en: {
@@ -525,7 +523,6 @@ const translations: Record<Language, TranslationStructure> = {
       cta: "Contact us",
       badgesLabel: "Certifications and brands we work with",
       badgeLicensed: "Licensed & Insured",
-      photoPending: "Photo of Fernando coming soon",
     },
   },
 };

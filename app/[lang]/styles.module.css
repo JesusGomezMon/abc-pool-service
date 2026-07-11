@@ -971,58 +971,13 @@
   max-width: 720px;
 }
 
-.aboutGrid {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(24px, 4vw, 40px);
-  align-items: start;
-}
-
-.aboutPhotoWrap {
-  margin: 0;
-}
-
-.aboutPhoto {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-  object-fit: cover;
-  aspect-ratio: 5 / 6;
-  border: 1px solid var(--line);
-  box-shadow: 0 12px 32px rgba(9, 48, 66, 0.1);
-}
-
-.aboutPhotoPending {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  aspect-ratio: 5 / 6;
-  border-radius: var(--radius);
-  border: 2px dashed rgba(15, 154, 166, 0.4);
-  background: linear-gradient(160deg, #eaf6f6 0%, #d4ecec 100%);
-  color: var(--accent);
-  text-align: center;
-  padding: 24px;
-}
-
-.aboutPhotoPending span {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  opacity: 0.85;
-  max-width: 200px;
-  line-height: 1.4;
-}
-
 .aboutBody {
   display: flex;
   flex-direction: column;
   gap: 16px;
   min-width: 0;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .aboutParagraph {
@@ -1512,14 +1467,8 @@ html.js .reveal.in {
   .llRiskGrid,
   .llAuthGrid,
   .llUrgGrid,
-  .llBaGrid,
-  .aboutGrid {
+  .llBaGrid {
     grid-template-columns: 1fr;
-  }
-
-  .aboutPhoto {
-    max-width: 420px;
-    margin: 0 auto;
   }
 
   .aboutCtaRow .btnWa {
